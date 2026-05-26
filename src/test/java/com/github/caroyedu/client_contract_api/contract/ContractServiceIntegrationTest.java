@@ -4,15 +4,12 @@ import com.github.caroyedu.client_contract_api.dto.ContractDTO;
 import com.github.caroyedu.client_contract_api.dto.ContractCostAmountDTO;
 import com.github.caroyedu.client_contract_api.dto.request.CreateContractRequest;
 import com.github.caroyedu.client_contract_api.dto.request.PatchContractCostAmount;
-import com.github.caroyedu.client_contract_api.model.Client;
 import com.github.caroyedu.client_contract_api.model.Contract;
 import com.github.caroyedu.client_contract_api.model.PersonClient;
 import com.github.caroyedu.client_contract_api.repository.ClientRepository;
 import com.github.caroyedu.client_contract_api.repository.ContractRepository;
 import com.github.caroyedu.client_contract_api.repository.PersonClientRepository;
-import com.github.caroyedu.client_contract_api.service.ClientService;
 import com.github.caroyedu.client_contract_api.service.ContractService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +36,6 @@ class ContractServiceIntegrationTest {
     private ContractService contractService;
     @Autowired
     private ContractRepository contractRepository;
-    @Autowired
-    private ClientService clientService;
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
@@ -112,15 +107,10 @@ class ContractServiceIntegrationTest {
         contractService.createContract(request2);
 
         ContractCostAmountDTO total = contractService.getContractCostAmountByClientPublicId(testClient.getPublicId());
-        assertTrue(total.getTotalCostAmount().compareTo(CONTRACT_COST_AMOUNT.multiply(BigDecimal.valueOf(2))) == 0);
+        assertEquals(0, total.getTotalCostAmount().compareTo(CONTRACT_COST_AMOUNT.multiply(BigDecimal.valueOf(2))));
     }
 
     private CreateContractRequest createContractRequest() {
-        CreateContractRequest request = new CreateContractRequest();
-        request.setClientPublicId(testClient.getPublicId());
-        request.setStartDate(CONTRACT_START_DATE);
-        request.setEndDate(CONTRACT_END_DATE);
-        request.setCostAmount(CONTRACT_COST_AMOUNT);
-        return request;
+        return new CreateContractRequest(testClient.getPublicId(), CONTRACT_START_DATE, CONTRACT_END_DATE, CONTRACT_COST_AMOUNT);
     }
 }

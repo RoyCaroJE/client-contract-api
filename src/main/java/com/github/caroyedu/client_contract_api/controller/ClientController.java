@@ -4,6 +4,7 @@ import com.github.caroyedu.client_contract_api.dto.ClientDTO;
 import com.github.caroyedu.client_contract_api.dto.request.CreateClientRequest;
 import com.github.caroyedu.client_contract_api.dto.request.UpdateClientRequest;
 import com.github.caroyedu.client_contract_api.service.ClientService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<ClientDTO> createClient(@RequestBody CreateClientRequest createClientRequest){
+    public ResponseEntity<ClientDTO> createClient(@RequestBody @Valid CreateClientRequest createClientRequest){
         try {
             ClientDTO client = clientService.createClient(createClientRequest);
             URI location = URI.create("/clients/" + client.getPublicId());
@@ -37,7 +38,7 @@ public class ClientController {
     }
 
     @PutMapping("/{publicId}")
-    public ResponseEntity<ClientDTO> updateClient(@PathVariable UUID publicId, @RequestBody UpdateClientRequest updateClientRequest) {
+    public ResponseEntity<ClientDTO> updateClient(@PathVariable UUID publicId, @RequestBody @Valid UpdateClientRequest updateClientRequest) {
         ClientDTO updatedClient = clientService.updateClient(publicId, updateClientRequest);
         return ResponseEntity.ok(updatedClient);
     }

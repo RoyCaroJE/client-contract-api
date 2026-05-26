@@ -109,10 +109,7 @@ class ClientServiceIntegrationTest {
         CreateClientRequest personRequest = createPersonClientRequest();
         ClientDTO created = clientService.createClient(personRequest);
 
-        UpdateClientRequest update = new UpdateClientRequest();
-        update.setName("Person Updated");
-        update.setEmail("personupdated@example.com");
-        update.setPhone("0101");
+        UpdateClientRequest update = new UpdateClientRequest("Person Updated", "personupdated@example.com", "0101");
 
         ClientDTO updated = clientService.updateClient(created.getPublicId(), update);
 
@@ -126,22 +123,10 @@ class ClientServiceIntegrationTest {
      */
 
     private CreateClientRequest createPersonClientRequest(){
-        CreateClientRequest clientRequest = new CreateClientRequest();
-        clientRequest.setType("person");
-        clientRequest.setBirthdate(LocalDate.parse(PERSON_CLIENT_BIRTHDATE));
-        clientRequest.setName(PERSON_CLIENT_NAME);
-        clientRequest.setEmail(PERSON_CLIENT_EMAIL);
-        clientRequest.setPhone(PERSON_CLIENT_PHONE);
-        return clientRequest;
+        return new CreateClientRequest("person", PERSON_CLIENT_NAME, PERSON_CLIENT_EMAIL, PERSON_CLIENT_PHONE, LocalDate.parse(PERSON_CLIENT_BIRTHDATE), null);
     }
 
     private CreateClientRequest createCompanyClientRequest(){
-        CreateClientRequest clientRequest = new CreateClientRequest();
-        clientRequest.setType("company");
-        clientRequest.setCompanyIdentifier(COMPANY_CLIENT_IDENTIFIER);
-        clientRequest.setName(COMPANY_CLIENT_NAME);
-        clientRequest.setEmail(COMPANY_CLIENT_EMAIL);
-        clientRequest.setPhone(COMPANY_CLIENT_PHONE);
-        return clientRequest;
+        return new CreateClientRequest("company", COMPANY_CLIENT_NAME, COMPANY_CLIENT_EMAIL, COMPANY_CLIENT_PHONE, null, COMPANY_CLIENT_IDENTIFIER);
     }
 }
