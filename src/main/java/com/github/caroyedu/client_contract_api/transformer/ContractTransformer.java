@@ -14,9 +14,9 @@ public class ContractTransformer {
 
     public void mapDtoToModel(CreateContractRequest dto, Contract model, Client client){
         model.setClient(client);
-        model.setStartDate(dto.getStartDate() == null ? LocalDate.now() : dto.getStartDate());
-        model.setEndDate(dto.getEndDate());
-        model.setCostAmount(dto.getCostAmount());
+        model.setStartDate(dto.startDate() == null ? LocalDate.now() : dto.startDate());
+        model.setEndDate(dto.endDate());
+        model.setCostAmount(dto.costAmount());
         model.setUpdated(OffsetDateTime.now()); // Business Requirement
     }
 

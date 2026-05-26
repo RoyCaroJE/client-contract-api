@@ -28,11 +28,11 @@ public class ContractService {
     private final ContractTransformer contractTransformer;
 
     public ContractDTO createContract(CreateContractRequest createContractRequest){
-        if(createContractRequest.getEndDate().isBefore(createContractRequest.getStartDate())){
+        if(createContractRequest.endDate().isBefore(createContractRequest.startDate())){
             throw new IllegalArgumentException("The ending date cannot be before than the starting date");
         }
 
-        Optional<Client> optionalClient = clientRepository.findClientByPublicId(createContractRequest.getClientPublicId());
+        Optional<Client> optionalClient = clientRepository.findClientByPublicId(createContractRequest.clientPublicId());
         if(optionalClient.isEmpty()){
             throw new IllegalArgumentException("Client not found");
         }

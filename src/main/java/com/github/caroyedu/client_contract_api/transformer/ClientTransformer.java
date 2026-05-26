@@ -24,24 +24,24 @@ public class ClientTransformer {
 
     public void mapDtoToPersonModel(CreateClientRequest dto, PersonClient model){
         mapDtoToModel(dto, model);
-        model.setBirthdate(dto.getBirthdate());
+        model.setBirthdate(dto.birthdate());
     }
 
     public void mapDtoToCompanyModel(CreateClientRequest dto, CompanyClient model){
         mapDtoToModel(dto, model);
-        model.setCompanyIdentifier(dto.getCompanyIdentifier());
+        model.setCompanyIdentifier(dto.companyIdentifier());
     }
 
     private void mapDtoToModel(CreateClientRequest dto, Client model){
-        model.setName(dto.getName());
-        model.setEmail(dto.getEmail());
-        model.setPhone(dto.getPhone());
+        model.setName(dto.name());
+        model.setEmail(dto.email());
+        model.setPhone(dto.phone());
     }
 
     public void updateModelFromDto(Client model, UpdateClientRequest dto){
-        model.setName(dto.getName());
-        model.setEmail(dto.getEmail());
-        model.setPhone(dto.getPhone());
+        model.setName(dto.name());
+        model.setEmail(dto.email());
+        model.setPhone(dto.phone());
     }
 
     public void mapPersonClientToDto(PersonClient model, PersonClientDTO dto){

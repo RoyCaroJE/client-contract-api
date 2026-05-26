@@ -9,11 +9,11 @@ import java.util.UUID;
 public record CreateContractRequest (
     @NotBlank
     UUID clientPublicId,
-
+    
     LocalDate startDate,
-
+    
     LocalDate endDate,
-
+    
     @NotBlank
     BigDecimal costAmount
 ) {}

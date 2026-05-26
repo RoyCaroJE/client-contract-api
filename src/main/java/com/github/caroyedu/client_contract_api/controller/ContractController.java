@@ -5,6 +5,7 @@ import com.github.caroyedu.client_contract_api.dto.ContractDTO;
 import com.github.caroyedu.client_contract_api.dto.request.CreateContractRequest;
 import com.github.caroyedu.client_contract_api.dto.request.PatchContractCostAmount;
 import com.github.caroyedu.client_contract_api.service.ContractService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class ContractController {
     private final ContractService contractService;
 
     @PostMapping
-    public ResponseEntity<ContractDTO> createContract(@RequestBody CreateContractRequest createContractRequest){
+    public ResponseEntity<ContractDTO> createContract(@RequestBody @Valid CreateContractRequest createContractRequest){
         try{
             ContractDTO contract = contractService.createContract(createContractRequest);
             URI location = URI.create("/contracts/" + contract.getPublicId());
@@ -33,7 +34,7 @@ public class ContractController {
     }
 
     @PatchMapping("/{publicId}/costAmount")
-    public ResponseEntity<ContractDTO> patchContractCostAmount(@PathVariable UUID publicId, @RequestBody PatchContractCostAmount patchRequest) {
+    public ResponseEntity<ContractDTO> patchContractCostAmount(@PathVariable UUID publicId, @RequestBody @Valid PatchContractCostAmount patchRequest) {
         ContractDTO updatedContract = contractService.patchContractCostAmount(publicId, patchRequest);
         return ResponseEntity.ok(updatedContract);
     }
