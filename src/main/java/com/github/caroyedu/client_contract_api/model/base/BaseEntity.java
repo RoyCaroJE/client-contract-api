@@ -23,7 +23,7 @@ public abstract class BaseEntity {
     private Long id;
     @Column(nullable = false, unique = true, updatable = false)
     private UUID publicId;
-    @Column(nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE DEFAULT NOW()")
+    @Column(nullable = false, updatable = false)
     private OffsetDateTime created;
     private OffsetDateTime updated;
     @Column(nullable = false)
