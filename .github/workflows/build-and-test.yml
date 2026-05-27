@@ -12,4 +12,3 @@ jobs:
     uses: RoyCaroJE/actions/.github/workflows/spring-ci.yml@v1.2
     with:
       java-version: '21'
-      postgres-version: '17.5'
