@@ -1,6 +1,4 @@
 spring:
-  profiles:
-      active: local # We are using the local by default, but we could change this to dev, prod...
   datasource:
     # In a real environment, these variables (DB_USER, DB_PASS...) would be defined
     # as environment variables or managed through a secret manager.
