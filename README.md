@@ -1,3 +1,5 @@
+[![CI](https://github.com/RoyCaroJE/client-contract-api/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/RoyCaroJE/client-contract-api/actions/workflows/build-and-test.yml)
+
 # Client Contract API
 
 An API using the factory design pattern in Java Spring Boot to manage clients and contracts.
