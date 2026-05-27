@@ -1,0 +1,12 @@
+name: build-and-test.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: RoyCaroJE/actions/.github/workflows/spring-ci.yml@v1.2
+    with:
+      java-version: '21'
+      postgres-version: '17.5'
