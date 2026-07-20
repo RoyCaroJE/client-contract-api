@@ -82,7 +82,20 @@
             <artifactId>postgresql</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.roycaroje</groupId>
+            <artifactId>spring-rest-starter</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/roycaroje/java-utils</url>
+        </repository>
+    </repositories>
 
 	<build>
 		<plugins>
