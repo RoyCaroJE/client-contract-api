@@ -86,7 +86,7 @@
         <dependency>
             <groupId>io.github.roycaroje</groupId>
             <artifactId>spring-rest-starter</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
